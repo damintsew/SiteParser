@@ -1,0 +1,13 @@
+
+var Sequelize = require('sequelize');
+
+//var sequelize = new Sequelize('food', 'postgres', '', {
+//    host: 'localhost'
+//    ,
+//    dialect: 'postgres'
+//});
+
+var sequelize = new Sequelize('postgres://postgres:@localhost:5432/food');
+
+//module.exports.Sequelize = Sequelize;
+module.exports.connection = sequelize;

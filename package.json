@@ -1,0 +1,25 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "Extended food description",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damintsew/health.git"
+  },
+  "author": "ADamintsev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/damintsew/health/issues"
+  },
+  "homepage": "https://github.com/damintsew/health#readme",
+  "dependencies": {
+    "pg": "^4.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.9.0",
+    "simplecrawler": "^0.5.3"
+  }
+}
