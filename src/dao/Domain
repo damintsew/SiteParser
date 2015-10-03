@@ -25,6 +25,10 @@ var Site = connection.define('site', {
     urlRegExp: {
         type: Sequelize.STRING,
         allowNull: true
+    },
+    active: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true
     }
 }, {
     timestamps: false

@@ -7,7 +7,11 @@ var Sequelize = require('sequelize');
 //    dialect: 'postgres'
 //});
 
-var sequelize = new Sequelize('postgres://postgres:@localhost:5432/food');
+//var sequelize = new Sequelize('postgres://postgres:@localhost:5432/food');
+var sequelize = new Sequelize('food', 'postgres', '', {
+    logging: false,
+    dialect: 'postgres'
+});
 
 //module.exports.Sequelize = Sequelize;
 module.exports.connection = sequelize;

@@ -16,3 +16,9 @@ module.exports.updateIfNotExists = function(siteContent) {
 module.exports.getSites = function() {
     return Site.all();
 };
+
+module.exports.getAllActiveSites = function() {
+    return Site.all({
+        where: {active: true}
+    });
+};

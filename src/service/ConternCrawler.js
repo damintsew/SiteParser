@@ -5,13 +5,18 @@ var decoder = new StringDecoder('utf8');
 
 var ContentCrawler = function(site) {
 
-    var crawler = this;
-    crawler.site = site;
+    var model = this;
+    model.site = site;
 
-    var foodCrawler = new Crawler(site.baseUrl, site.startUrl);
+    var crawler = new Crawler(site.baseUrl, site.startUrl);
 
-    foodCrawler.maxDepth = 4;
-    crawler.crawler = foodCrawler;
+    crawler.maxDepth = 4;
+    //crawler.interval = 1000;
+
+    model.crawler = crawler;
+
+    model.addFetchCondition();
+    model.error();
 
 };
 
@@ -31,13 +36,37 @@ ContentCrawler.prototype.complete = function(callback) {
     });
 };
 
-ContentCrawler.prototype.addFetchCondition = function() {
+ContentCrawler.prototype.error = function(callback) {
     var model = this;
 
+    model.crawler.on("queueerror", function (queueItem, responseBuffer, response) {
+        console.error("Error: %s", queueItem);
+
+        if (callback) {
+            callback();
+        }
+    });
+};
+
+ContentCrawler.prototype.addFetchCondition = function(condition) {
+    var model = this,
+        regExp = null;
+    if (condition || model.site.urlRegExp) {
+        regExp = new RegExp(condition || model.site.urlRegExp);
+    }
+
     model.conditionID = model.crawler.addFetchCondition(function(parsedURL) {
-        //todo
-        return !parsedURL.path.match(/\.js|\.css|\.gif/i)
-            && parsedURL.path.match(/databases\/foodmeals/i);
+
+        if (parsedURL.path.match(/\.js|\.css|\.gif|\.ico|\.png/i)) {
+            return false;
+        }
+
+        console.log(parsedURL.uriPath);
+
+        if (regExp) {
+            return parsedURL.path.match(regExp);
+        }
+        return true;
     });
 };
 
@@ -45,12 +74,7 @@ ContentCrawler.prototype.start = function() {
     this.crawler.start();
 };
 
+module.exports = ContentCrawler;
 
 
-
-foodCrawler.on("queueerror", function(queueItem, responseBuffer, response) {
-    console.log("I just received %s", queueItem);
-
-    // Do something with the data in responseBuffer
-});
-
+//\/story/\d+|\/page/\d+
