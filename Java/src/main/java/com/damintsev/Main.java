@@ -1,6 +1,6 @@
 package com.damintsev;
 
-import com.damintsev.service.CrawlerRunner;
+import com.damintsev.job.CrawlerRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

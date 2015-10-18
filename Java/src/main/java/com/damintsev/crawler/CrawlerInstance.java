@@ -2,7 +2,7 @@ package com.damintsev.crawler;
 
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
-import com.damintsev.service.SiteService;
+import com.damintsev.service.SiteContentService;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
@@ -16,17 +16,12 @@ public class CrawlerInstance extends WebCrawler {
     private final static Pattern FILTERS = Pattern.compile(".*(\\.(css|js|gif|jpg"
             + "|png|mp3|mp3|zip|gz))$");
 
-    private SiteService siteService;
+    private SiteContentService siteContentService;
     private Site site;
-    private Pattern urlRegExp;
 
-    public CrawlerInstance(SiteService siteService, Site site) {
-        this.siteService = siteService;
+    public CrawlerInstance(SiteContentService siteContentService, Site site) {
+        this.siteContentService = siteContentService;
         this.site = site;
-
-        if (site.getUrlRegExp() != null) {
-            urlRegExp = Pattern.compile(site.getUrlRegExp());
-        }
     }
 
     /**
@@ -42,10 +37,6 @@ public class CrawlerInstance extends WebCrawler {
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
-
-//        if (urlRegExp != null && !urlRegExp.matcher(href).matches()) {
-//            return false;
-//        }
 
         return !FILTERS.matcher(href).matches()
                 && href.startsWith(site.getBaseUrl());
@@ -76,7 +67,7 @@ public class CrawlerInstance extends WebCrawler {
             content.setUrl(page.getWebURL().getURL());
             content.setContent(html);
 
-            siteService.saveIsNotExists(content);
+            siteContentService.saveIsNotExists(content);
         }
     }
 }

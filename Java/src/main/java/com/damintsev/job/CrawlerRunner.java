@@ -1,8 +1,9 @@
-package com.damintsev.service;
+package com.damintsev.job;
 
 import com.damintsev.crawler.CrawlerFactory;
 import com.damintsev.domain.Site;
 import com.damintsev.repository.SiteRepository;
+import com.damintsev.service.SiteContentService;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -11,7 +12,6 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -25,7 +25,7 @@ public class CrawlerRunner {
     private SiteRepository siteRepository;
 
     @Autowired
-    private SiteService siteService;
+    private SiteContentService siteContentService;
 
 
     public void runCrawl() {
@@ -35,7 +35,7 @@ public class CrawlerRunner {
         for(Site site: sites) {
             CrawlController crawlController = init(site);
 
-            CrawlerFactory factory = new CrawlerFactory(siteService, site);
+            CrawlerFactory factory = new CrawlerFactory(siteContentService, site);
             crawlController.start(factory, numberOfCrawlers);
         }
     }

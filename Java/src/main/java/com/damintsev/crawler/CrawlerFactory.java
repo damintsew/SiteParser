@@ -1,8 +1,7 @@
 package com.damintsev.crawler;
 
 import com.damintsev.domain.Site;
-import com.damintsev.repository.SiteRepository;
-import com.damintsev.service.SiteService;
+import com.damintsev.service.SiteContentService;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
 
@@ -12,15 +11,15 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
  */
 public class CrawlerFactory implements CrawlController.WebCrawlerFactory {
 
-    private SiteService siteService;
+    private SiteContentService siteContentService;
     private Site site;
 
-    public CrawlerFactory(SiteService siteService, Site site) {
-        this.siteService = siteService;
+    public CrawlerFactory(SiteContentService siteContentService, Site site) {
+        this.siteContentService = siteContentService;
         this.site = site;
     }
 
     public WebCrawler newInstance() throws Exception {
-        return new CrawlerInstance(siteService, site);
+        return new CrawlerInstance(siteContentService, site);
     }
 }

@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
  * @since 18 Окт. 2015
  */
 @Component
-public class SiteService {
+public class SiteContentService {
 
     @Autowired
     SiteRepository siteRepository;
