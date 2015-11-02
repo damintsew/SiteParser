@@ -25,6 +25,10 @@ public class SiteContent {
     @ManyToOne(fetch = FetchType.LAZY)
     private Site site;
 
+//    @JoinColumn()
+//    @OneToOne(mappedBy = "siteContent", fetch = FetchType.LAZY)
+//    private SiteContentState state;
+
     public Long getId() {
         return id;
     }

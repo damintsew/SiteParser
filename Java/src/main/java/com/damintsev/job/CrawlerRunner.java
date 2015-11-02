@@ -27,7 +27,6 @@ public class CrawlerRunner {
     @Autowired
     private SiteContentService siteContentService;
 
-
     public void runCrawl() {
         List<Site> sites = siteRepository.getAll();
         int numberOfCrawlers = sites.size() * 5;

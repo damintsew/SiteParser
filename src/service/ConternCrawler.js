@@ -11,7 +11,12 @@ var ContentCrawler = function(site) {
     var crawler = new Crawler(site.baseUrl, site.startUrl);
 
     crawler.maxDepth = 4;
-    //crawler.interval = 1000;
+    crawler.maxConcurrency = 15;
+    crawler.interval = 100;
+
+    crawler.on("complete", function(queueItem, resourses) {
+        console.log('Discovery complete:' + resourses);
+    });
 
     model.crawler = crawler;
 
@@ -61,7 +66,7 @@ ContentCrawler.prototype.addFetchCondition = function(condition) {
             return false;
         }
 
-        console.log(parsedURL.uriPath);
+        //console.log(parsedURL.uriPath);
 
         if (regExp) {
             return parsedURL.path.match(regExp);

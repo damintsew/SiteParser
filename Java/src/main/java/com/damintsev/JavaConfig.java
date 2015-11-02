@@ -26,7 +26,7 @@ import java.util.Properties;
 
 /**
  * @author adamintsev, <a href="mailto:Andrey.Damintsev@returnonintelligence.com">Andrey Damintsev</a>
- * @since 07 Îêò. 2015
+ * @since 07 ï¿½ï¿½ï¿½. 2015
  */
 @Configuration
 @ComponentScan("com.damintsev")
@@ -77,6 +77,7 @@ public class JavaConfig {
         factory.setPackagesToScan("com.damintsev");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
+
 
         factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
         //return factory.getObject();

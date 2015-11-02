@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 /**
  * @author adamintsev, <a href="mailto:Andrey.Damintsev@returnonintelligence.com">Andrey Damintsev</a>
@@ -20,12 +22,25 @@ public abstract class Parse {
     @PersistenceContext
     protected EntityManager em;
 
+    protected Site site;
+
+    protected Predicate<SiteContent> regexpValidation;
+
+    public void init() {
+        site = getSite();
+
+        Pattern pattern = Pattern.compile(site.getUrlRegExp());
+        regexpValidation = content -> pattern.matcher(content.getUrl()).find();
+    }
+
     public abstract List<SiteContent> loadSiteContent();
 
     protected boolean isValid(SiteContent content) {
-        final String url = content.getUrl();
+        return regexpValidation.test(content);
+    }
 
-        return url.matches(getSite().getUrlRegExp());
+    protected Predicate<SiteContent> getValidator() {
+        return regexpValidation;
     }
 
     public abstract ParsedContent parse(SiteContent content);

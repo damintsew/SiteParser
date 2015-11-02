@@ -2,10 +2,11 @@ package com.damintsev.domain;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author adamintsev, <a href="mailto:Andrey.Damintsev@returnonintelligence.com">Andrey Damintsev</a>
- * @since 07 Îêò. 2015
+ * @since 07 ï¿½ï¿½ï¿½. 2015
  */
 @Entity
 @Table(name = "site")
@@ -26,6 +27,11 @@ public class Site {
 
     @Column(name = "url_reg_exp")
     private String urlRegExp;
+
+//    @JoinColumn
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<SiteContent> content;
+
 
     public Long getId() {
         return id;
