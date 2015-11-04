@@ -1,4 +1,4 @@
-package com.damintsev.job;
+package com.damintsev.parser;
 
 import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
@@ -39,7 +39,7 @@ public abstract class Parse {
         return regexpValidation.test(content);
     }
 
-    protected Predicate<SiteContent> getValidator() {
+    public Predicate<SiteContent> getValidator() {
         return regexpValidation;
     }
 

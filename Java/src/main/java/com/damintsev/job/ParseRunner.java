@@ -3,6 +3,7 @@ package com.damintsev.job;
 import com.damintsev.domain.RecordState;
 import com.damintsev.domain.SiteContent;
 import com.damintsev.domain.SiteContentState;
+import com.damintsev.parser.Parse;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

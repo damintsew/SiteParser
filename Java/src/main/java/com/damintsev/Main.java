@@ -2,7 +2,7 @@ package com.damintsev;
 
 import com.damintsev.job.CrawlerRunner;
 import com.damintsev.job.ParseRunner;
-import com.damintsev.job.impl.KmpParser;
+import com.damintsev.parser.impl.KmpParser;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

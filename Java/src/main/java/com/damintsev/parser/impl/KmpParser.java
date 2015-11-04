@@ -1,14 +1,12 @@
-package com.damintsev.job.impl;
+package com.damintsev.parser.impl;
 
 import com.damintsev.domain.KmpContent;
 import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
-import com.damintsev.job.Parse;
+import com.damintsev.parser.Parse;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -23,6 +21,7 @@ public class KmpParser extends Parse {
                 " WHERE state.siteContent.site = :site", Long.class)
                 .setParameter("site", getSite())
                 .getResultList();
+
         if (parsedIds.isEmpty()) {
             return em.createQuery("SELECT content FROM SiteContent content " +
                     " WHERE content.site = :site", SiteContent.class)
