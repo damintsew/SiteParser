@@ -5,9 +5,14 @@ import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
 import com.damintsev.parser.Parse;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author adamintsev, <a href="mailto:Andrey.Damintsev@returnonintelligence.com">Andrey Damintsev</a>
@@ -76,10 +81,20 @@ public class KmpParser extends Parse {
 
 
 
-    public ParsedContent parse(SiteContent site) {
+    public ParsedContent parse(SiteContent content) {
+
+        Document doc = Jsoup.parse(content.getContent());
+        Elements storyRows = doc.select(".titlediv").select(".row");
+        Element storyDiv = storyRows.get(1);
+
+        Element tagsDiv = storyRows.get(0);
+
+        List<String> tags = tagsDiv.select(".col-sm-6").get(1).select("a")
+                .stream().map(Element::text).collect(Collectors.toList());
+
         KmpContent parser = new KmpContent();
-        parser.setContent("lalal");
-        parser.setHeader("lalal");
+        parser.setContent(storyDiv.text());
+        parser.setTags(tags);
 
         return parser;
     }

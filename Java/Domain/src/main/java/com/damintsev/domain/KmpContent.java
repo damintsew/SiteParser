@@ -12,11 +12,8 @@ import java.util.List;
 @Table(name = "kill_me_pls_content")
 public class KmpContent extends ParsedContent {
 
-    @Column
+    @Column(columnDefinition="TEXT")
     private String content;
-
-    @Column
-    private String header;
 
     @Column()
     @CollectionTable(name = "kill_me_pls_tags")
@@ -29,14 +26,6 @@ public class KmpContent extends ParsedContent {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
     }
 
     public List<String> getTags() {
