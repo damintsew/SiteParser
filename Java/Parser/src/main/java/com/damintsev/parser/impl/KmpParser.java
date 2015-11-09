@@ -4,7 +4,7 @@ import com.damintsev.domain.api.KmpContent;
 import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
-import com.damintsev.parser.Parse;
+import com.damintsev.parser.AbstractParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,28 +19,28 @@ import java.util.stream.Collectors;
  * @since 18 Окт. 2015
  */
 @Component
-public class KmpParser extends Parse {
+public class KmpParser extends AbstractParser {
 
-    public List<SiteContent> loadSiteContent() {
-        List<Long> parsedIds = em.createQuery("SELECT state.siteContent.id FROM SiteContentState state " +
-                " WHERE state.siteContent.site = :site", Long.class)
-                .setParameter("site", getSite())
-                .getResultList();
-
-        if (parsedIds.isEmpty()) {
-            return em.createQuery("SELECT content FROM SiteContent content " +
-                    " WHERE content.site = :site", SiteContent.class)
-                    .setParameter("site", getSite())
-                    .setMaxResults(1000)
-                    .getResultList();
-        }
-        return em.createQuery("SELECT content FROM SiteContent content " +
-                " WHERE content.site = :site " +
-                "  AND content.id not in (:ids)", SiteContent.class)
-                .setParameter("site", getSite())
-                .setParameter("ids", parsedIds)
-                .setMaxResults(1000)
-                .getResultList();
+//    public List<SiteContent> loadSiteContent() {
+//        List<Long> parsedIds = em.createQuery("SELECT state.siteContent.id FROM SiteContentState state " +
+//                " WHERE state.siteContent.site = :site", Long.class)
+//                .setParameter("site", getSite())
+//                .getResultList();
+//
+//        if (parsedIds.isEmpty()) {
+//            return em.createQuery("SELECT content FROM SiteContent content " +
+//                    " WHERE content.site = :site", SiteContent.class)
+//                    .setParameter("site", getSite())
+//                    .setMaxResults(1000)
+//                    .getResultList();
+//        }
+//        return em.createQuery("SELECT content FROM SiteContent content " +
+//                " WHERE content.site = :site " +
+//                "  AND content.id not in (:ids)", SiteContent.class)
+//                .setParameter("site", getSite())
+//                .setParameter("ids", parsedIds)
+//                .setMaxResults(1000)
+//                .getResultList();
 
 
 //        TypedQuery<SiteContent> query = em.createQuery("SELECT unparsed FROM SiteContent unparsed " +
@@ -77,7 +77,7 @@ public class KmpParser extends Parse {
 //        query.setMaxResults(1000);
 
 //        return query.getResultList();
-    }
+//    }
 
 
 

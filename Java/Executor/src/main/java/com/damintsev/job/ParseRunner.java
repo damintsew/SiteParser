@@ -3,7 +3,7 @@ package com.damintsev.job;
 import com.damintsev.domain.RecordState;
 import com.damintsev.domain.SiteContent;
 import com.damintsev.domain.SiteContentState;
-import com.damintsev.parser.Parse;
+import com.damintsev.parser.AbstractParser;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
@@ -25,7 +25,7 @@ public class ParseRunner {
     private EntityManager em;
 
     @Transactional
-    public void runParser(Parse parser) {
+    public void runParser(AbstractParser parser) {
 
         initParser(parser);
         List<SiteContent> siteContentList = loadUnParsedContent(parser);
@@ -36,11 +36,11 @@ public class ParseRunner {
         processValidRecord(parser, contentMap.get(true));
     }
 
-    private void initParser(Parse parser) {
+    private void initParser(AbstractParser parser) {
         parser.init();
     }
 
-    private List<SiteContent> loadUnParsedContent(Parse parser) {
+    private List<SiteContent> loadUnParsedContent(AbstractParser parser) {
         return parser.loadSiteContent();
     }
 
@@ -58,7 +58,7 @@ public class ParseRunner {
                 .collect(Collectors.<SiteContentState>toList());
     }
 
-    private List<SiteContentState> processValidRecord(Parse parser, List<SiteContent> siteContentList) {
+    private List<SiteContentState> processValidRecord(AbstractParser parser, List<SiteContent> siteContentList) {
         return siteContentList.stream()
                 .map(content -> new SiteContentState()
                         .withSiteContent(content)
