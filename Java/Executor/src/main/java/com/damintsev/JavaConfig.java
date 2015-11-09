@@ -80,8 +80,7 @@ public class JavaConfig {
 
 
         factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
-        //return factory.getObject();
-        //Changed as per Josh's suggestion
+
         return factory;
     }
 
