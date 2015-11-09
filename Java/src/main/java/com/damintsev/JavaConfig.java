@@ -61,7 +61,7 @@ public class JavaConfig {
     @Bean
     public PlatformTransactionManager transactionManager() {
         EntityManagerFactory factory = entityManagerFactory().getObject();
-        return new JpaTransactionManager( factory );
+        return new JpaTransactionManager(factory);
     }
 
     @Bean
@@ -74,7 +74,7 @@ public class JavaConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("com.damintsev");
+        factory.setPackagesToScan("com.damintsev.domain");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
 

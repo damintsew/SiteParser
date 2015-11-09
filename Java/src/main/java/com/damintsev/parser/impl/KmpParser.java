@@ -1,6 +1,6 @@
 package com.damintsev.parser.impl;
 
-import com.damintsev.domain.KmpContent;
+import com.damintsev.domain.api.KmpContent;
 import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;

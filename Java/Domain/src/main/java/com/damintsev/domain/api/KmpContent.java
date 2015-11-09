@@ -1,4 +1,6 @@
-package com.damintsev.domain;
+package com.damintsev.domain.api;
+
+import com.damintsev.domain.ParsedContent;
 
 import javax.persistence.*;
 import java.util.List;
