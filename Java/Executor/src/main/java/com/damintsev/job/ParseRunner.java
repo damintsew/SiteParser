@@ -41,7 +41,7 @@ public class ParseRunner {
     }
 
     private List<SiteContent> loadUnParsedContent(AbstractParser parser) {
-        return parser.loadSiteContent();
+        return parser.loadContent();
     }
 
     private Map<Boolean, List<SiteContent>> splitByCriteria(Predicate<SiteContent> validator, List<SiteContent> siteContentList) {
@@ -62,7 +62,7 @@ public class ParseRunner {
         return siteContentList.stream()
                 .map(content -> new SiteContentState()
                         .withSiteContent(content)
-                        .withParsedContent(parser.parse(content))
+//                        .withParsedContent(parser.parse(content))
                         .withState(RecordState.PARSED))
                 .map(this::persist)
                 .collect(Collectors.<SiteContentState>toList());

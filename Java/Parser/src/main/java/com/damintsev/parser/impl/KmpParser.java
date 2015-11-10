@@ -81,7 +81,7 @@ public class KmpParser extends AbstractParser {
 
 
 
-    public ParsedContent parse(SiteContent content) {
+    public ParsedContent extractContent(SiteContent content) {
 
         Document doc = Jsoup.parse(content.getContent());
         Elements storyRows = doc.select(".titlediv").select(".row");

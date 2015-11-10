@@ -16,6 +16,8 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -32,6 +34,8 @@ import java.util.Properties;
 @ComponentScan("com.damintsev")
 @PropertySources(value = { @PropertySource("classpath:/application.properties") })
 @EnableTransactionManagement
+@EnableAsync
+@EnableScheduling
 public class JavaConfig {
 
     @Value("${jdbc.driverClassName}")

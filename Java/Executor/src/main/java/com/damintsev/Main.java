@@ -17,11 +17,8 @@ public class Main {
                 new AnnotationConfigApplicationContext(JavaConfig.class);
 
         CrawlerRunner runner = ctx.getBean("crawlerRunner", CrawlerRunner.class);
+        runner.runCrawl();
 
-//        runner.runCrawl();
-
-        ParseRunner parseRunner = ctx.getBean("parseRunner", ParseRunner.class);
-
-        parseRunner.runParser(ctx.getBean("kmpParser", KmpParser.class));
+        Thread.sleep(Long.MAX_VALUE);
     }
 }

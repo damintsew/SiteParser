@@ -6,5 +6,5 @@ package com.damintsev.domain;
  */
 public enum RecordState {
 
-    PARSED, INVALID_REG_EXP, POSTED_TO_VK
+    PARSED, INVALID_REG_EXP, PARSING_ERROR, POSTED_TO_VK
 }
