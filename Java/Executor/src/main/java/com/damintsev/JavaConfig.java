@@ -1,5 +1,6 @@
 package com.damintsev;
 
+import com.damintsev.rest.config.RestClientConfig;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import java.util.Properties;
  * @since 07 ���. 2015
  */
 @Configuration
+@Import(RestClientConfig.class)
 @ComponentScan("com.damintsev")
 @PropertySources(value = { @PropertySource("classpath:/application.properties") })
 @EnableTransactionManagement

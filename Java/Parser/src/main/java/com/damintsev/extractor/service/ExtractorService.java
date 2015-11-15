@@ -1,4 +1,4 @@
-package com.damintsev.extractor;
+package com.damintsev.extractor.service;
 
 import com.damintsev.domain.RecordState;
 import com.damintsev.domain.SiteContent;

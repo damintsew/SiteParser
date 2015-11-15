@@ -13,6 +13,7 @@
         <module>Parser</module>
         <module>Crawler</module>
         <module>Executor</module>
+        <module>Publisher</module>
     </modules>
 
     <properties>

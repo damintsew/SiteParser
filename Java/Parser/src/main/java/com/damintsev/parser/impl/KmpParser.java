@@ -5,10 +5,12 @@ import com.damintsev.domain.ParsedContent;
 import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
 import com.damintsev.parser.AbstractParser;
+import com.damintsev.repository.SiteRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,6 +22,11 @@ import java.util.stream.Collectors;
  */
 @Component
 public class KmpParser extends AbstractParser {
+
+    private final static String KMP_SITE_ID = "kill_me"
+
+    @Autowired
+    private SiteRepository siteRepository;
 
 //    public List<SiteContent> loadSiteContent() {
 //        List<Long> parsedIds = em.createQuery("SELECT state.siteContent.id FROM SiteContentState state " +
@@ -100,6 +107,7 @@ public class KmpParser extends AbstractParser {
     }
 
     protected Site getSite() {
+        siteRepository.getSite("")
         return (Site) em.createQuery("SELECT c FROM Site c WHERE c.name = 'killmepls'").getSingleResult();
     }
 }

@@ -1,5 +1,6 @@
 package com.damintsev.extractor;
 
+import com.damintsev.extractor.service.ExtractorService;
 import com.damintsev.parser.ContentExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
