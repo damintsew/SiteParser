@@ -28,10 +28,8 @@ public class Site {
     @Column(name = "url_reg_exp")
     private String urlRegExp;
 
-//    @JoinColumn
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<SiteContent> content;
-
+    @Column(name = "active")
+    private Boolean active;
 
     public Long getId() {
         return id;
@@ -71,5 +69,13 @@ public class Site {
 
     public void setUrlRegExp(String urlRegExp) {
         this.urlRegExp = urlRegExp;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

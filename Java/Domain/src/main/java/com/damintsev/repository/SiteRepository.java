@@ -21,8 +21,8 @@ public class SiteRepository {
     private EntityManager em;
 
     @SuppressWarnings("unchecked")
-    public List<Site> getAll() {
-        return em.createQuery("FROM Site").getResultList();
+    public List<Site> getActiveSites() {
+        return em.createQuery("FROM Site s WHERE s.active = true").getResultList();
     }
 
     public boolean siteContentNotExists(SiteContent siteContent) {
@@ -39,5 +39,11 @@ public class SiteRepository {
 
     public void save(SiteContent content) {
         em.persist(content);
+    }
+
+    public Site getSite(String siteId) {//todo change to id
+        return (Site) em.createQuery("SELECT c FROM Site c WHERE c.name = :siteId")
+                .setParameter("siteId", siteId)
+                .getSingleResult();
     }
 }
