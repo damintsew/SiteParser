@@ -5,6 +5,7 @@ import com.damintsev.domain.Site;
 import com.damintsev.domain.SiteContent;
 import com.damintsev.domain.SiteContentState;
 import com.damintsev.repository.SiteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -24,6 +25,9 @@ public abstract class AbstractParser implements ContentExtractor {
 
     @PersistenceContext
     protected EntityManager em;
+
+    @Autowired
+    private SiteRepository siteRepository;
 
     protected Site site;
 
@@ -81,5 +85,9 @@ public abstract class AbstractParser implements ContentExtractor {
 
     public abstract ParsedContent extractContent(SiteContent content);
 
-    protected abstract Site getSite();
+    protected Site getSite() {
+        return siteRepository.getSite(getSiteId());
+    }
+
+    protected abstract String getSiteId();
 }

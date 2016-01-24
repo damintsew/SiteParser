@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @Component
 public class KmpParser extends AbstractParser {
 
-    private final static String KMP_SITE_ID = "kill_me"
+    private final static String KMP_SITE_ID = "kill_me_pls";
 
     @Autowired
     private SiteRepository siteRepository;
@@ -106,8 +106,7 @@ public class KmpParser extends AbstractParser {
         return parser;
     }
 
-    protected Site getSite() {
-        siteRepository.getSite("")
-        return (Site) em.createQuery("SELECT c FROM Site c WHERE c.name = 'killmepls'").getSingleResult();
+    protected String getSiteId() {
+        return KMP_SITE_ID;
     }
 }

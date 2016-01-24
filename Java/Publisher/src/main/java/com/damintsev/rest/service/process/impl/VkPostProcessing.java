@@ -17,13 +17,12 @@ import java.util.stream.Collectors;
  */
 public class VkPostProcessing extends AbstractPostProcessing {
 
-    private final Function<ParsedContent, Post> mapper = (ParsedContent content) -> new VkPost()
-            .withMessage(formatMessage((KmpContent) content));
+    private final static String KMP_SITE_ID = "kill_me_pls";
 
     @Override
-    public List<Post> map(List<ParsedContent> parsedContents) {
-        return parsedContents.stream()
-                .map(mapper).collect(Collectors.toList());
+    public Post mapContent(ParsedContent parsedContents) {
+        return new VkPost()
+                .withMessage(formatMessage((KmpContent) parsedContents));
     }
 
     private String formatMessage(KmpContent content) {
@@ -36,7 +35,7 @@ public class VkPostProcessing extends AbstractPostProcessing {
     }
 
     @Override
-    protected Site getSourceSite() {
-        return null;
+    protected String getSourceSiteId() {
+        return KMP_SITE_ID;
     }
 }

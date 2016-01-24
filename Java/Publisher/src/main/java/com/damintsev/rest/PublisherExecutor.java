@@ -25,6 +25,6 @@ public class PublisherExecutor {
 //        post.setOwnerId("295518");
         post.setMessage("lalalala");
 
-        vkDao.postGroupWall(post);
+//        vkDao.postGroupWall(post);
     }
 }

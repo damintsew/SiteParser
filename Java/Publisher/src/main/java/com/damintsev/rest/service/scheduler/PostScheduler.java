@@ -1,5 +1,6 @@
 package com.damintsev.rest.service.scheduler;
 
+import com.damintsev.domain.PostConfig;
 import com.damintsev.rest.model.Post;
 
 import java.util.List;
@@ -11,5 +12,9 @@ import java.util.Objects;
  */
 public interface PostScheduler {
 
-    void schedulePosts(Object config, List<Post> posts);
+    void init(PostConfig config);
+
+    Long getNextPostTime();
+
+    void setNextPostTime(Post post);
 }

@@ -14,9 +14,7 @@ public interface PostProcessing {
 
     Objects loadConfig();
 
-    List<ParsedContent> loadUnpostedData();
+    List<ParsedContent> loadUnpostedData(Integer postsPerDay);
 
     List<Post> map(List<ParsedContent> parsedContents);
-
-
 }

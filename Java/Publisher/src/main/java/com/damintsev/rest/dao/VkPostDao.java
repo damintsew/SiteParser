@@ -2,6 +2,7 @@ package com.damintsev.rest.dao;
 
 import com.damintsev.rest.config.RestClientConfig;
 import com.damintsev.rest.model.AccessToken;
+import com.damintsev.rest.model.Post;
 import com.damintsev.rest.model.VkPost;
 import com.damintsev.rest.model.response.VkResponse;
 import com.damintsev.rest.model.response.WallPostResponse;
@@ -20,7 +21,7 @@ import java.util.Map;
  * @since 14 Нояб. 2015
  */
 @Component
-public class VkPostDao {
+public class VkPostDao implements PostDao<VkPost> {
 
     @Autowired
     ObjectMapper mapper;
@@ -28,7 +29,7 @@ public class VkPostDao {
     @Autowired
     private RestOperations rest;
 
-    public VkPost postGroupWall(VkPost post) {
+    public VkPost publish(VkPost post) {
         String url = "wall.post?owner_id={owner_id}&message={message}&friends_only={friends_only}&publish_date={publish_date}";
 
         Map<String, Object> parameters = new HashMap<>();
@@ -53,4 +54,5 @@ public class VkPostDao {
 
         System.out.println("posts = " + posts);
     }
+
 }

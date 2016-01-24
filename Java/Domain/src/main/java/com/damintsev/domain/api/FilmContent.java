@@ -19,8 +19,11 @@ public class FilmContent extends ParsedContent {
     private String size;
     private String link;
     private String downloadLink;
+    private String genre;
+    private String engTitle;
+    private String rusTitle;
 
-    public void setTitle(String title) {
+    public void setFullTitle(String title) {
         this.title = title;
     }
 
@@ -50,5 +53,29 @@ public class FilmContent extends ParsedContent {
 
     public String getDownloadLink() {
         return downloadLink;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setEngTitle(String engTitle) {
+        this.engTitle = engTitle;
+    }
+
+    public String getEngTitle() {
+        return engTitle;
+    }
+
+    public void setRusTitle(String rusTitle) {
+        this.rusTitle = rusTitle;
+    }
+
+    public String getRusTitle() {
+        return rusTitle;
     }
 }

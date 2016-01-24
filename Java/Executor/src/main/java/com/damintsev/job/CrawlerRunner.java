@@ -28,8 +28,8 @@ public class CrawlerRunner {
     private SiteContentService siteContentService;
 
     public void runCrawl() {
-        List<Site> sites = siteRepository.getAll();
-        int numberOfCrawlers = sites.size() * 5;
+        List<Site> sites = siteRepository.getActiveSites();
+        int numberOfCrawlers = 1;
 
         for(Site site: sites) {
             CrawlController crawlController = init(site);
@@ -43,6 +43,7 @@ public class CrawlerRunner {
         String crawlStorageFolder = "/data/crawl/root";
 
         CrawlConfig config = new CrawlConfig();
+        config.setPolitenessDelay(1000);
         config.setCrawlStorageFolder(crawlStorageFolder);
 
         /*

@@ -1,5 +1,6 @@
 package com.damintsev.rest.model;
 
+import com.damintsev.domain.ParsedContent;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.util.ReflectionUtils;
@@ -72,5 +73,10 @@ public class VkPost implements Post {
     private enum FromGroup {
         USER, //запись будет опубликована от имени пользователя (по умолчанию
         GROUP //запись будет опубликована от имени группы
+    }
+
+    @Override
+    public void setUnparsedContent(ParsedContent content) {
+
     }
 }
